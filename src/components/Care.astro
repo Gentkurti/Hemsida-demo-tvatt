@@ -1,0 +1,26 @@
+---
+// Garment care symbols, one stroke weight. kind: tub | triangle | tumble | iron | circle
+const { kind = 'tub', size = 28 } = Astro.props;
+---
+<svg class="care" width={size} height={size} viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  {kind === 'tub' && (<>
+    <path d="M3 10h26l-3 15.2A2.4 2.4 0 0 1 23.6 27H8.4a2.4 2.4 0 0 1-2.4-1.8L3 10z" />
+    <path d="M8 16c1.7-1.6 3.3-1.6 5 0s3.3 1.6 5 0 3.3-1.6 5 0" />
+  </>)}
+  {kind === 'triangle' && (<>
+    <path d="M16 5 28 26H4L16 5z" />
+  </>)}
+  {kind === 'tumble' && (<>
+    <rect x="4" y="4" width="24" height="24" rx="2.5" />
+    <circle cx="16" cy="16" r="7.5" />
+  </>)}
+  {kind === 'iron' && (<>
+    <path d="M4 24h24c0-8-3.5-12.5-10.5-12.5H11C7 11.5 4 14.5 4 20v4z" />
+    <circle cx="11" cy="18.5" r=".6" fill="currentColor" />
+    <circle cx="15" cy="18.5" r=".6" fill="currentColor" />
+    <circle cx="19" cy="18.5" r=".6" fill="currentColor" />
+  </>)}
+  {kind === 'circle' && (<>
+    <circle cx="16" cy="16" r="11" />
+  </>)}
+</svg>

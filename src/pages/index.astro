@@ -1,0 +1,218 @@
+---
+import '../styles/global.css';
+import Care from '../components/Care.astro';
+
+const services = [
+  { name: 'Hotell & pensionat', text: 'Sängkläder, handdukar och badrockar, redo inför nästa incheckning.', img: 'hotel', alt: 'Person som bäddar en säng med vita kuddar', care: 'tub' },
+  { name: 'Spa, salong & gym', text: 'Frottéhanddukar och badlakan, tvättade skonsamt och vikta klara.', img: 'towels', alt: 'Vita handdukar vikta på en säng', care: 'tumble' },
+  { name: 'Restaurang & café', text: 'Bordsdukar, servetter och förkläden utan fläckar och veck.', img: 'hero-stack', alt: 'Staplar av vikt tvätt på ett blått bord', care: 'iron' },
+  { name: 'Arbetskläder & mattor', text: 'Skjortor, overaller och entrémattor, pressade och i ordning.', img: 'shirts', alt: 'Skjortor på rad på galgar', care: 'triangle' },
+];
+const steps = [
+  { name: 'Vi hämtar', text: 'Vi kommer förbi på överenskommen tid och tar med det smutsiga.', care: 'circle' },
+  { name: 'Vi tvättar', text: 'Textilierna tvättas, torkas och pressas efter material.', care: 'tub' },
+  { name: 'Vi levererar', text: 'Rent och vikt tillbaka till er, redo att användas direkt.', care: 'iron' },
+];
+const belt = ['Sängkläder', 'Handdukar', 'Bordsdukar', 'Servetter', 'Arbetskläder', 'Mattor', 'Förkläden', 'Badrockar'];
+const kinds = ['tub', 'triangle', 'tumble', 'iron', 'circle'];
+---
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sabi Tvätt – textiltvätt för företag</title>
+    <meta name="description" content="Sabi Tvätt tvättar, pressar och levererar textilier till restauranger, hotell, salonger och verkstäder." />
+    <meta name="theme-color" content="#1636e8" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231636e8'/%3E%3Cpath d='M6 12h20l-2.2 11.4A2 2 0 0 1 21.8 25H10.2a2 2 0 0 1-2-1.6z' fill='none' stroke='%23ffd23f' stroke-width='2.2' stroke-linejoin='round'/%3E%3C/svg%3E" />
+    <link rel="preload" as="image" href="/img/hero-stack.jpg" />
+    <script is:inline>document.documentElement.classList.add('js')</script>
+  </head>
+  <body>
+    <header class="top" id="top">
+      <div class="wrap">
+        <a class="mark" href="#" aria-label="Sabi Tvätt, till toppen"><Care kind="tub" size={22} /><b>Sabi Tvätt</b></a>
+        <nav class="nav" aria-label="Huvudmeny">
+          <a class="opt" href="#tjanster">Tjänster</a>
+          <a class="opt" href="#sa-fungerar-det">Så fungerar det</a>
+          <a class="opt" href="#kontakt">Hitta hit</a>
+          <a class="btn small" href="#kontakt">Kontakta oss</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="h1">
+        <div class="wrap hero-grid">
+          <div>
+            <h1 id="h1">
+              <span class="ln"><span>Ren tvätt.</span></span>
+              <span class="ln"><span><em>Varje gång.</em></span></span>
+            </h1>
+            <p class="lede">Textiltvätt för restauranger, hotell, salonger och verkstäder. Hämtas, tvättas, pressas och levereras.</p>
+            <div class="cta">
+              <a class="btn" href="#kontakt">Kontakta oss
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10h13M11 4l6 6-6 6"/></svg>
+              </a>
+              <a class="btn ghost" href="#tjanster">Våra tjänster</a>
+            </div>
+          </div>
+          <div class="tag" id="tag">
+            <div class="tag-photo"><img src="/img/hero-stack.jpg" alt="Staplar av vikt, ren tvätt på ett blått bord" width="2000" height="1333" fetchpriority="high" /></div>
+            <div class="stitch" aria-hidden="true"></div>
+            <div class="stamp" aria-hidden="true">
+              <svg class="ring" viewBox="0 0 100 100"><defs><path id="c" d="M50 50m-38 0a38 38 0 1 1 76 0a38 38 0 1 1-76 0"/></defs><text><textPath href="#c" textLength="236" lengthAdjust="spacing">Textiltvätt för företag · Textiltvätt för företag ·</textPath></text></svg>
+              <Care kind="iron" size={44} />
+            </div>
+          </div>
+        </div>
+        <div class="band" aria-hidden="true">
+          <div class="band-track">
+            {[0, 1].map(() => (
+              <ul>
+                {belt.map((w, i) => (<li>{w}<Care kind={kinds[i % kinds.length]} size={26} /></li>))}
+              </ul>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="light services on-light" id="tjanster" aria-labelledby="h-tj">
+        <div class="wrap">
+          <div class="sec-head">
+            <h2 id="h-tj" data-reveal>Vi tvättar det som håller er verksamhet igång.</h2>
+            <p data-reveal style="--d:.12s">Välj det som liknar ert företag. Hör av er så berättar vi hur vi kan hjälpa till.</p>
+          </div>
+          <ul class="rows">
+            {services.map((s, i) => (
+              <li class="row" data-reveal style={`--d:${i * 0.08}s`}>
+                <span class="row-fill" aria-hidden="true"></span>
+                <a href="#kontakt">
+                  <Care kind={s.care} size={44} />
+                  <div>
+                    <h3>{s.name}</h3>
+                    <p>{s.text}</p>
+                  </div>
+                  <span class="go" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h13M11 4l6 6-6 6"/></svg>
+                  </span>
+                  <figure class="ph"><img src={`/img/${s.img}.jpg`} alt={s.alt} loading="lazy" decoding="async" width="1400" height="933" /></figure>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section class="process" id="sa-fungerar-det" aria-labelledby="h-sa">
+        <div class="wrap process-grid">
+          <div class="process-photo" data-reveal><img src="/img/machines.jpg" alt="Rad av vita tvättmaskiner" loading="lazy" decoding="async" width="2000" height="1333" /></div>
+          <div>
+            <h2 id="h-sa" data-reveal>Så fungerar det.</h2>
+            <ol class="steps" id="steps">
+              {steps.map((s, i) => (
+                <li class="step" data-reveal>
+                  <Care kind={s.care} size={40} />
+                  <h3>{s.name}</h3>
+                  <p>{s.text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="kontakt" aria-labelledby="h-ko">
+        <div class="wrap contact-grid">
+          <div>
+            <h2 id="h-ko" data-reveal>Hör av dig.</h2>
+            <ul class="reach" data-reveal style="--d:.1s">
+              <li><a class="big" href="tel:+460000000000"><Care kind="tumble" size={40} />000-000 00 00</a></li>
+              <li><a class="big" href="mailto:namn@foretag.se?subject=F%C3%B6rfr%C3%A5gan%20till%20Sabi%20Tv%C3%A4tt"><Care kind="triangle" size={40} />namn@foretag.se</a></li>
+            </ul>
+            <p class="ask" data-reveal style="--d:.2s">Berätta vad ni tvättar och hur ofta, så återkommer vi.</p>
+          </div>
+          <div class="card" data-reveal style="--d:.15s">
+            <div class="map" role="img" aria-label="Kartskiss med en markering för Sabi Tvätt">
+              <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="320" height="200" fill="#e6ecfb"/>
+                <g stroke="#ffffff" stroke-width="9" stroke-linecap="round" fill="none">
+                  <path d="M-10 150 L120 130 L200 80 L340 60"/><path d="M80 -10 L100 210"/><path d="M230 -10 L210 210"/><path d="M-10 60 L340 110"/>
+                </g>
+                <g stroke="#cfd7ef" stroke-width="2" fill="none"><path d="M-10 150 L120 130 L200 80 L340 60"/><path d="M-10 60 L340 110"/></g>
+                <path d="M0 175 C60 160 90 190 150 178 S260 165 320 185 V200 H0Z" fill="#c9d6fb"/>
+                <g transform="translate(168 100)">
+                  <circle class="pulse" r="12" fill="#1636e8" opacity=".4"/>
+                  <g class="pin"><path d="M0 0 C-14 -16 -16 -36 0 -40 C16 -36 14 -16 0 0Z" fill="#1636e8"/><circle cy="-26" r="6" fill="#ffd23f"/></g>
+                </g>
+              </svg>
+            </div>
+            <dl class="facts">
+              <div><dt class="caps">Adress</dt><dd>Gatuadress 00<br />000 00 Ort</dd></div>
+              <div><dt class="caps">Öppet</dt><dd>Vardagar 00–00</dd></div>
+            </dl>
+            <p class="note">Uppgifterna ovan är platshållare tills riktiga uppgifter finns.</p>
+            <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Sabi+Tv%C3%A4tt" target="_blank" rel="noopener">Hitta hit
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10h13M11 4l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <p class="foot-word" aria-hidden="true">Sabi Tvätt</p>
+        <div class="foot-row">
+          <span>© <span id="yr">2026</span> Sabi Tvätt</span>
+          <span>Foto: <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const $ = (s: string) => document.querySelector<HTMLElement>(s);
+      const yr = $('#yr'); if (yr) yr.textContent = String(new Date().getFullYear());
+
+      // reveals
+      const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
+      document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+
+      // header: solid after hero start, hide on scroll down
+      const top = $('#top')!; let lastY = 0;
+      const steps = $('#steps'); const stepEls = [...document.querySelectorAll<HTMLElement>('.step')];
+      const heroImg = document.querySelector<HTMLElement>('.tag-photo img');
+      const procImg = document.querySelector<HTMLElement>('.process-photo');
+      let tick = false;
+      const frame = () => {
+        tick = false;
+        const y = scrollY;
+        top.classList.toggle('solid', y > 40);
+        top.classList.toggle('hide', y > lastY && y > 400);
+        lastY = y;
+        if (!reduce) {
+          if (heroImg && y < innerHeight) heroImg.style.setProperty('--py', `${y * -0.06}px`);
+          if (procImg) { const r = procImg.getBoundingClientRect(); procImg.style.setProperty('--py', `${(r.top - innerHeight / 2) * -0.08}px`); }
+        }
+        if (steps) {
+          const r = steps.getBoundingClientRect();
+          const p = Math.min(1, Math.max(0, (innerHeight * 0.62 - r.top) / r.height));
+          steps.style.setProperty('--prog', `${p * 100}%`);
+          stepEls.forEach((s) => s.classList.toggle('on', s.getBoundingClientRect().top < innerHeight * 0.62));
+        }
+      };
+      addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(frame); } }, { passive: true });
+      addEventListener('resize', frame); frame();
+
+      // hero tag: gentle tilt toward the pointer (desktop only)
+      const tag = $('#tag');
+      if (tag && !reduce && matchMedia('(hover: hover) and (min-width: 881px)').matches) {
+        addEventListener('pointermove', (e) => {
+          const x = e.clientX / innerWidth - 0.5, y = e.clientY / innerHeight - 0.5;
+          tag.style.setProperty('--rx', `${x * 7}deg`); tag.style.setProperty('--ry', `${y * -6}deg`);
+        }, { passive: true });
+      }
+    </script>
+  </body>
+</html>
